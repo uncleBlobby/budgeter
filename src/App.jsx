@@ -1,12 +1,36 @@
 import { useState } from 'react'
-import logo from './logo.svg'
+import axios from 'axios';
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
 
   const sendIncomeToDB = () => {
-    
+    console.log(`sending income to DB`);
+    axios({
+      method: 'get',
+      url: 'http://localhost:3001/'
+    })
+    .then(res => {
+      console.log(`response: ${res.data}`);
+    })
+    .catch(err => {
+      console.log(`error: ${err}`);
+    })
+  }
+
+  const sendExpenseToDB = () => {
+    console.log(`sending expense to DB`);
+    axios({
+      method: 'get',
+      url: 'http://localhost:3001/'
+    })
+    .then(res => {
+      console.log(`response: ${res.data}`);
+    })
+    .catch(err => {
+      console.log(`error: ${err}`);
+    })
   }
 
   return (
@@ -29,7 +53,7 @@ function App() {
               <td><input placeholder='ie: Salary'></input></td>
               <td><input placeholder='ie: $1000.00'></input></td>
               <td><input placeholder='ie: DD/MM/YY'></input></td>
-              <td><button>Add Income</button></td>
+              <td><button onClick={ (event) => sendIncomeToDB(event)}>Add Income</button></td>
             </tr>
           </tbody>
         </table>
@@ -49,7 +73,7 @@ function App() {
               <td><input placeholder='ie: Groceries'></input></td>
               <td><input placeholder='ie: $123.45'></input></td>
               <td><input placeholder='ie: DD/MM/YY'></input></td>
-              <td><button>Add Expense</button></td>
+              <td><button onClick={ (event) => sendExpenseToDB(event)}>Add Expense</button></td>
             </tr>
           </tbody>
         </table>

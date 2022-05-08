@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Open fresh terminal tab and start frontend dev server.
+# Open fresh terminal tab and start hot-reloading frontend dev server.
 echo "Starting front end dev environment..."
 
 gnome-terminal --tab --title FRONTEND -- npm run dev
 
-# Open fresh terminal tab and start backend dev server.
+# Open fresh terminal tab and start hot-reloading backend dev server.
 echo "Starting back end dev environment..."
 
 gnome-terminal --tab --title BACKEND -- npx nodemon ./server/server.js

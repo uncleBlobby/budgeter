@@ -9,7 +9,7 @@ function App() {
     console.log(`sending income to DB`);
     axios({
       method: 'get',
-      url: 'http://localhost:3001/'
+      url: 'http://localhost:3001/api/add/income'
     })
     .then(res => {
       console.log(`response: ${res.data}`);
@@ -23,7 +23,7 @@ function App() {
     console.log(`sending expense to DB`);
     axios({
       method: 'get',
-      url: 'http://localhost:3001/'
+      url: 'http://localhost:3001/api/add/expense'
     })
     .then(res => {
       console.log(`response: ${res.data}`);

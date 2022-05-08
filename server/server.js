@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     console.log('request received');
-    console.log(req);
+    //console.log(req);
     res.send('Hello, world!');
 })
 

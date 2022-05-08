@@ -3,8 +3,11 @@ import axios from 'axios';
 import './App.css'
 
 function App() {
+  // TODO: update state to handle input chages
   const [count, setCount] = useState(0)
 
+  // TODO: update income routing to use POST method instead of GET
+  //       will also need GET routing to update all incomes from DB
   const sendIncomeToDB = () => {
     console.log(`sending income to DB`);
     axios({
@@ -19,6 +22,8 @@ function App() {
     })
   }
 
+// TODO: update expense routing to use POST method instead of GET
+//       will also need GET routing to update all expenses from DB
   const sendExpenseToDB = () => {
     console.log(`sending expense to DB`);
     axios({
@@ -33,6 +38,7 @@ function App() {
     })
   }
 
+  // TODO: Breakout app chunks into separate components.
   return (
     <div className="App">
       Budgeter

@@ -19,6 +19,18 @@ app.get('/', (req, res) => {
     res.send('Hello, world!');
 })
 
+app.get('/api/add-income', (req, res) => {
+    console.log(`request received to add income`);
+    //console.log(req);
+    res.send(`Hello, income!`);
+})
+
+app.get('/api/add-expense', (req, res) => {
+    console.log(`request received to add expense`);
+    //console.log(req);
+    res.send(`Hello, expense!`);
+})
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })

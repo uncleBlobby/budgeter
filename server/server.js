@@ -33,6 +33,8 @@ app.get('/api/get/income', (req, res) => {
 app.post('/api/add/income', (req, res) => {
     console.log(`POST request received to add income`);
     console.log(req.body);
+    const incomeData = req.body;
+    const incomeSQl = prepareSQLStatement(incomeData, 'income');
     res.send(`Hello, income!`);
 })
 
@@ -49,9 +51,30 @@ app.get('/api/get/expense', (req, res) => {
 app.post('/api/add/expense', (req, res) => {
     console.log(`POST request received to add expense`);
     console.log(req.body);
+    const expenseData = req.body;
+    const expenseSQL = prepareSQLStatement(expenseData, 'expense');
     res.send(`Hello, expense!`);
 })
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })
+
+// TODO: in preparing the SQL statement, need to make sure the data is in the correct format..
+// for example: strip dollar signs from amount, etc.
+// for example: make sure date is in correct format (DD/MM/YY)
+// might be easier to make this adjustment on the frontend ??
+
+const prepareSQLStatement = (txnData, txnType) => {
+    if (txnType === 'income'){
+        let stmt = `INSERT INTO income (${txnData.source}, ${txnData.amount}, ${txnData.date}) VALUES ()`;
+        return stmt;
+    }
+    if (txnType === 'expense'){
+        let stmt = `INSERT INTO expense (${txnData.type}, ${txnData.amount}, ${txnData.date}) VALUES ()`;
+        return stmt;
+    }
+    else {
+        console.log(`Error: invalid transaction type`);
+    }
+}

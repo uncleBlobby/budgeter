@@ -30,9 +30,12 @@ app.get('/api/get/income', (req, res) => {
 })
 
 // TODO: parse income data and prepare SQL statement to insert into DB
+// CURRENTLY: basic SQL statement is prepared, but not sent to DB
+// CURRENTLY: entries in SQL statement are not necessarily formatted properly!
 app.post('/api/add/income', (req, res) => {
     console.log(`POST request received to add income`);
     console.log(req.body);
+    // the below might need to be LET statements
     const incomeData = req.body;
     const incomeSQl = prepareSQLStatement(incomeData, 'income');
     res.send(`Hello, income!`);
@@ -48,9 +51,12 @@ app.get('/api/get/expense', (req, res) => {
 })
 
 // TODO: parse expense data and prepare SQL statement to insert into DB
+// CURRENTLY: basic SQL statement is prepared, but not sent to DB
+// CURRENTLY: entries in SQL statement are not necessarily formatted properly!
 app.post('/api/add/expense', (req, res) => {
     console.log(`POST request received to add expense`);
     console.log(req.body);
+    // the below might need to be LET statements
     const expenseData = req.body;
     const expenseSQL = prepareSQLStatement(expenseData, 'expense');
     res.send(`Hello, expense!`);

@@ -23,6 +23,6 @@ sleep 1
 # Open firefox on frontend dev server.
 echo "Starting firefox at http://localhost:3000..."
 
-firefox http://localhost:3000
+firefox http://localhost:3000 &
 
 echo "Done."

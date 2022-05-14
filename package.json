@@ -13,7 +13,8 @@
     "express": "^4.18.1",
     "nodemon": "^2.0.16",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "sqlite3": "^5.0.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

@@ -22,17 +22,29 @@ app.get('/', (req, res) => {
 
 // TODO: update income endpoint to use POST method instead of GET
 //       will also need GET endpoint to retrieve all incomes from DB
-app.get('/api/add/income', (req, res) => {
-    console.log(`request received to add income`);
+app.get('/api/get/income', (req, res) => {
+    console.log(`request received to get incomes`);
     //console.log(req);
+    res.send(`Getting incomes from DB!`);
+})
+
+app.post('/api/add/income', (req, res) => {
+    console.log(`POST request received to add income`);
+    console.log(req.body);
     res.send(`Hello, income!`);
 })
 
 // TODO: update expense endpoint to use POST method instead of GET
 //       will also need GET endpoint to retrieve all expenses from DB
-app.get('/api/add/expense', (req, res) => {
-    console.log(`request received to add expense`);
+app.get('/api/get/expense', (req, res) => {
+    console.log(`request received to get expenses`);
     //console.log(req);
+    res.send(`Getting expenses from DB!`);
+})
+
+app.post('/api/add/expense', (req, res) => {
+    console.log(`POST request received to add expense`);
+    console.log(req.body);
     res.send(`Hello, expense!`);
 })
 

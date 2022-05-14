@@ -6,13 +6,25 @@ function App() {
   // TODO: update state to handle input chages
   const [count, setCount] = useState(0)
 
-  // TODO: update income routing to use POST method instead of GET
-  //       will also need GET routing to update all incomes from DB
+  const [newIncome, setNewIncome] = useState({
+    source: '',
+    amount: '',
+    date: ''
+  })
+
+  const [newExpense, setNewExpense] = useState({
+    type: '',
+    amount: '',
+    date: ''
+  })
+
+  // TODO: need GET routing to update all incomes from DB
   const sendIncomeToDB = () => {
     console.log(`sending income to DB`);
     axios({
-      method: 'get',
-      url: 'http://localhost:3001/api/add/income'
+      method: 'post',
+      url: 'http://localhost:3001/api/add/income',
+      data: newIncome
     })
     .then(res => {
       console.log(`response: ${res.data}`);
@@ -22,19 +34,63 @@ function App() {
     })
   }
 
-// TODO: update expense routing to use POST method instead of GET
-//       will also need GET routing to update all expenses from DB
-  const sendExpenseToDB = () => {
-    console.log(`sending expense to DB`);
+  // TODO: GET routing to update all incomes from DB
+  // currently unused.
+  const getIncomesFromDB = () => {
+    console.log(`getting incomes from DB`);
     axios({
       method: 'get',
-      url: 'http://localhost:3001/api/add/expense'
+      url: 'http://localhost:3001/api/get/income'
     })
     .then(res => {
       console.log(`response: ${res.data}`);
     })
     .catch(err => {
       console.log(`error: ${err}`);
+    })
+  }
+
+  const sendExpenseToDB = () => {
+    console.log(`sending expense to DB`);
+    axios({
+      method: 'post',
+      url: 'http://localhost:3001/api/add/expense',
+      data: newExpense
+    })
+    .then(res => {
+      console.log(`response: ${res.data}`);
+    })
+    .catch(err => {
+      console.log(`error: ${err}`);
+    })
+  }
+
+  // TODO: GET routing to update all expenses from DB
+  // currently unused.
+  const getExpensesFromDB = () => {
+    console.log(`getting expenses from DB`);
+    axios({
+      method: 'get',
+      url: 'http://localhost:3001/api/get/expense'
+    })
+    .then(res => {
+      console.log(`response: ${res.data}`);
+    })
+    .catch(err => {
+      console.log(`error: ${err}`);
+    })
+  }
+
+  const handleIncomeChange = (e) => {
+    setNewIncome({
+      ...newIncome,
+      [e.target.name]: e.target.value
+    })
+  }
+  const handleExpenseChange = (e) => {
+    setNewExpense({
+      ...newExpense,
+      [e.target.name]: e.target.value
     })
   }
 
@@ -56,9 +112,9 @@ function App() {
           </thead>
           <tbody>
             <tr>
-              <td><input placeholder='ie: Salary'></input></td>
-              <td><input placeholder='ie: $1000.00'></input></td>
-              <td><input placeholder='ie: DD/MM/YY'></input></td>
+              <td><input name='source' placeholder='ie: Salary' onChange={ (e) => handleIncomeChange(e)}></input></td>
+              <td><input name='amount' placeholder='ie: $1000.00' onChange={ (e) => handleIncomeChange(e)}></input></td>
+              <td><input name='date' placeholder='ie: DD/MM/YY' onChange={ (e) => handleIncomeChange(e)}></input></td>
               <td><button onClick={ (event) => sendIncomeToDB(event)}>Add Income</button></td>
             </tr>
           </tbody>
@@ -76,9 +132,9 @@ function App() {
           </thead>
           <tbody>
             <tr>
-              <td><input placeholder='ie: Groceries'></input></td>
-              <td><input placeholder='ie: $123.45'></input></td>
-              <td><input placeholder='ie: DD/MM/YY'></input></td>
+              <td><input name='type' placeholder='ie: Groceries' onChange={ (e) => handleExpenseChange(e)}></input></td>
+              <td><input name='amount' placeholder='ie: $123.45' onChange={ (e) => handleExpenseChange(e)}></input></td>
+              <td><input name='date' placeholder='ie: DD/MM/YY' onChange={ (e) => handleExpenseChange(e)}></input></td>
               <td><button onClick={ (event) => sendExpenseToDB(event)}>Add Expense</button></td>
             </tr>
           </tbody>

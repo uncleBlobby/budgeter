@@ -42,7 +42,8 @@ app.post('/api/add/income', (req, res) => {
     console.log(req.body);
     // the below might need to be LET statements
     const incomeData = req.body;
-    const incomeSQl = prepareSQLStatement(incomeData, 'income');
+    const incomeSQL = prepareSQLStatement(incomeData, 'income');
+    db.run(incomeSQL);
     res.send(`Hello, income!`);
 })
 
@@ -64,6 +65,7 @@ app.post('/api/add/expense', (req, res) => {
     // the below might need to be LET statements
     const expenseData = req.body;
     const expenseSQL = prepareSQLStatement(expenseData, 'expense');
+    db.run(expenseSQL);
     res.send(`Hello, expense!`);
 })
 
@@ -78,11 +80,11 @@ app.listen(port, () => {
 
 const prepareSQLStatement = (txnData, txnType) => {
     if (txnType === 'income'){
-        let stmt = `INSERT INTO income (${txnData.source}, ${txnData.amount}, ${txnData.date}) VALUES ()`;
+        let stmt = `INSERT INTO incomes (source, amount, date) VALUES ('${txnData.source}', '${txnData.amount}', '${txnData.date}')`;
         return stmt;
     }
     if (txnType === 'expense'){
-        let stmt = `INSERT INTO expense (${txnData.type}, ${txnData.amount}, ${txnData.date}) VALUES ()`;
+        let stmt = `INSERT INTO expenses (type, amount, date) VALUES ('${txnData.type}', '${txnData.amount}', '${txnData.date}')`;
         return stmt;
     }
     else {

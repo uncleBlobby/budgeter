@@ -20,28 +20,32 @@ app.get('/', (req, res) => {
     res.send('Hello, world!');
 })
 
-// TODO: update income endpoint to use POST method instead of GET
-//       will also need GET endpoint to retrieve all incomes from DB
+// TODO: create SQL statement to qeury DB for all incomes
+// FUTURE: will need params to query DB for specific date range
+// FUTURE: will also likely want to search for specific incomes
 app.get('/api/get/income', (req, res) => {
     console.log(`request received to get incomes`);
     //console.log(req);
     res.send(`Getting incomes from DB!`);
 })
 
+// TODO: parse income data and prepare SQL statement to insert into DB
 app.post('/api/add/income', (req, res) => {
     console.log(`POST request received to add income`);
     console.log(req.body);
     res.send(`Hello, income!`);
 })
 
-// TODO: update expense endpoint to use POST method instead of GET
-//       will also need GET endpoint to retrieve all expenses from DB
+// TODO: create SQL statement to qeury DB for all expenses
+// FUTURE: will need params to query DB for specific date range
+// FUTURE: will also likely want to search for specific expenses (types)
 app.get('/api/get/expense', (req, res) => {
     console.log(`request received to get expenses`);
     //console.log(req);
     res.send(`Getting expenses from DB!`);
 })
 
+// TODO: parse expense data and prepare SQL statement to insert into DB
 app.post('/api/add/expense', (req, res) => {
     console.log(`POST request received to add expense`);
     console.log(req.body);

@@ -18,7 +18,7 @@ function App() {
     date: ''
   })
 
-  // TODO: need GET routing to update all incomes from DB
+  // sends new income object from frontend inputs to backend API
   const sendIncomeToDB = () => {
     console.log(`sending income to DB`);
     axios({
@@ -50,6 +50,7 @@ function App() {
     })
   }
 
+  // sends new expense object from frontend inputs to backend API
   const sendExpenseToDB = () => {
     console.log(`sending expense to DB`);
     axios({

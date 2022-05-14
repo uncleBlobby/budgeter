@@ -1,7 +1,11 @@
 const express = require('express');
 const cors = require('cors');
+const res = require('express/lib/response');
 
 // still need to add DB and DB integration, for now just spin up server
+
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('db/budgeter.db');
 
 const app = express();
 const port = 3001;
@@ -27,6 +31,7 @@ app.get('/api/get/income', (req, res) => {
     console.log(`request received to get incomes`);
     //console.log(req);
     res.send(`Getting incomes from DB!`);
+    //DEBUGTESTDB();
 })
 
 // TODO: parse income data and prepare SQL statement to insert into DB
@@ -83,4 +88,16 @@ const prepareSQLStatement = (txnData, txnType) => {
     else {
         console.log(`Error: invalid transaction type`);
     }
+}
+
+// DEBUG FUCTION: TEST DB
+
+const DEBUGTESTDB = () => {
+    console.log(`testing DB`);
+    db.all(`SELECT * from incomes`, (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        console.log(rows);
+    })
 }

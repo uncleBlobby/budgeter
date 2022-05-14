@@ -34,8 +34,7 @@ app.get('/api/get/income', (req, res) => {
     //DEBUGTESTDB();
 })
 
-// TODO: parse income data and prepare SQL statement to insert into DB
-// CURRENTLY: basic SQL statement is prepared, but not sent to DB
+// CURRENTLY: basic SQL statement is prepared and sent to DB
 // CURRENTLY: entries in SQL statement are not necessarily formatted properly!
 app.post('/api/add/income', (req, res) => {
     console.log(`POST request received to add income`);
@@ -56,8 +55,7 @@ app.get('/api/get/expense', (req, res) => {
     res.send(`Getting expenses from DB!`);
 })
 
-// TODO: parse expense data and prepare SQL statement to insert into DB
-// CURRENTLY: basic SQL statement is prepared, but not sent to DB
+// CURRENTLY: basic SQL statement is prepared and sent to DB
 // CURRENTLY: entries in SQL statement are not necessarily formatted properly!
 app.post('/api/add/expense', (req, res) => {
     console.log(`POST request received to add expense`);

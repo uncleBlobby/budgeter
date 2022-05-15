@@ -78,11 +78,11 @@ app.listen(port, () => {
 
 const prepareSQLStatement = (txnData, txnType) => {
     if (txnType === 'income'){
-        let stmt = `INSERT INTO incomes (source, amount, date) VALUES ('${txnData.source}', '${txnData.amount}', '${txnData.date}')`;
+        let stmt = `INSERT INTO transactions (class, type, amount, date, created, modified, description) VALUES ('${txnData.class}', '${txnData.type}', '${txnData.amount}', '${txnData.date}', '${txnData.created}', '${txnData.modified}', '${txnData.description}')`;
         return stmt;
     }
     if (txnType === 'expense'){
-        let stmt = `INSERT INTO expenses (type, amount, date) VALUES ('${txnData.type}', '${txnData.amount}', '${txnData.date}')`;
+        let stmt = `INSERT INTO transactions (class, type, amount, date, created, modified, description) VALUES ('${txnData.class}', '${txnData.type}', '${txnData.amount}', '${txnData.date}', '${txnData.created}', '${txnData.modified}', '${txnData.description}')`;
         return stmt;
     }
     else {

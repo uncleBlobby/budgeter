@@ -67,6 +67,18 @@ app.post('/api/add/expense', (req, res) => {
     res.send(`Hello, expense!`);
 })
 
+// GET ALL TRANSACTIONS FROM DB
+
+app.get('/api/get/transactions', (req, res) => {
+    console.log(`GET request received to get transactions`);
+    db.all(`SELECT * FROM transactions`, (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        res.send(rows);
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })
@@ -78,11 +90,11 @@ app.listen(port, () => {
 
 const prepareSQLStatement = (txnData, txnType) => {
     if (txnType === 'income'){
-        let stmt = `INSERT INTO incomes (source, amount, date) VALUES ('${txnData.source}', '${txnData.amount}', '${txnData.date}')`;
+        let stmt = `INSERT INTO transactions (class, type, amount, date, created, modified, description) VALUES ('${txnData.class}', '${txnData.type}', '${txnData.amount}', '${txnData.date}', '${txnData.created}', '${txnData.modified}', '${txnData.description}')`;
         return stmt;
     }
     if (txnType === 'expense'){
-        let stmt = `INSERT INTO expenses (type, amount, date) VALUES ('${txnData.type}', '${txnData.amount}', '${txnData.date}')`;
+        let stmt = `INSERT INTO transactions (class, type, amount, date, created, modified, description) VALUES ('${txnData.class}', '${txnData.type}', '${txnData.amount}', '${txnData.date}', '${txnData.created}', '${txnData.modified}', '${txnData.description}')`;
         return stmt;
     }
     else {

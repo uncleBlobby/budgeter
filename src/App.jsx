@@ -64,6 +64,27 @@ function App() {
     })
     return total
   }
+
+  const getTotalSmokes = () => {
+    let total = 0;
+    latestData.forEach(txn => {
+      if (txn.type.toLowerCase() === 'smokes') {
+        total += Number(txn.amount);
+      }
+    })
+    return total;
+  }
+
+  const getTotalBeerAlcohol = () => {
+    let total = 0;
+    latestData.forEach(txn => {
+      const type = txn.type.toLowerCase();
+      if (type.includes('beer') || type.includes('alcohol')) {
+        total += Number(txn.amount);
+      }
+    })
+    return total;
+  }
   
   // sends new income object from frontend inputs to backend API
   const sendIncomeToDB = () => {
@@ -164,7 +185,7 @@ function App() {
             <tr>
               <td><input name='type' placeholder='ie: Salary' onChange={ (e) => handleIncomeChange(e)}></input></td>
               <td><input name='amount' placeholder='ie: $1000.00' onChange={ (e) => handleIncomeChange(e)}></input></td>
-              <td><input name='date' placeholder='ie: DD/MM/YY' onChange={ (e) => handleIncomeChange(e)}></input></td>
+              <td><input name='date' placeholder='ie: YY-MM-DD' onChange={ (e) => handleIncomeChange(e)}></input></td>
               <td><button onClick={ (event) => sendIncomeToDB(event)}>Add Income</button></td>
             </tr>
           </tbody>
@@ -184,16 +205,20 @@ function App() {
             <tr>
               <td><input name='type' placeholder='ie: Groceries' onChange={ (e) => handleExpenseChange(e)}></input></td>
               <td><input name='amount' placeholder='ie: $123.45' onChange={ (e) => handleExpenseChange(e)}></input></td>
-              <td><input name='date' placeholder='ie: DD/MM/YY' onChange={ (e) => handleExpenseChange(e)}></input></td>
+              <td><input name='date' placeholder='ie: YY-MM-DD' onChange={ (e) => handleExpenseChange(e)}></input></td>
               <td><button onClick={ (event) => sendExpenseToDB(event)}>Add Expense</button></td>
             </tr>
           </tbody>
         </table>
       </div>
       <div>
-        Show Data here.
-        <button onClick={ () => getDataFromDB()}>GET DB DATA</button>
-        <TransactionList props={latestData} getTotalIncome={getTotalIncome()} getTotalExpense={getTotalExpense()} />
+        <TransactionList 
+          props={latestData} 
+          getTotalIncome={getTotalIncome()} 
+          getTotalExpense={getTotalExpense()} 
+          getTotalSmokes={getTotalSmokes()}
+          getTotalBeerAlcohol={getTotalBeerAlcohol()}
+          />
       </div>
 
     </div>

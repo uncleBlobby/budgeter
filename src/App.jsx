@@ -1,10 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios';
 import './App.css'
+
+import TransactionList from './components/TransactionList';
 
 function App() {
   // TODO: update state to handle input chages
   const [count, setCount] = useState(0)
+
+  const [haveLatestData, setHaveLatestData] = useState(false)
+
+  const [latestData, setLatestData] = useState([])
 
   const [newIncome, setNewIncome] = useState({
     class: 'income',  // income
@@ -50,6 +56,7 @@ function App() {
     })
     .then(res => {
       console.log(`response: ${res.data}`);
+      setHaveLatestData(false);
     })
     .catch(err => {
       console.log(`error: ${err}`);
@@ -82,6 +89,7 @@ function App() {
     })
     .then(res => {
       console.log(`response: ${res.data}`);
+      setHaveLatestData(false);
     })
     .catch(err => {
       console.log(`error: ${err}`);
@@ -98,6 +106,22 @@ function App() {
     })
     .then(res => {
       console.log(`response: ${res.data}`);
+    })
+    .catch(err => {
+      console.log(`error: ${err}`);
+    })
+  }
+
+  const getDataFromDB = () => {
+    console.log(`getting all transactions from DB`);
+    axios({
+      method: 'get',
+      url: 'http://localhost:3001/api/get/transactions'
+    })
+    .then(res => {
+      console.log(`response: ${JSON.stringify(res.data)}`);
+      setLatestData(res.data);
+      console.log(`latestData: ${latestData}`);
     })
     .catch(err => {
       console.log(`error: ${err}`);
@@ -122,6 +146,16 @@ function App() {
       description: '',
     })
   }
+
+  useEffect(
+    () => {
+      console.log(`updating data from DB`);
+      getDataFromDB();
+      setHaveLatestData(true);
+      //console.log(`latest data after useeffect: ${latestData}`)
+    },
+    [haveLatestData]
+  )
 
   // TODO: Breakout app chunks into separate components.
   return (
@@ -171,6 +205,8 @@ function App() {
       </div>
       <div>
         Show Data here.
+        <button onClick={ () => getDataFromDB()}>GET DB DATA</button>
+        <TransactionList props={latestData} />
       </div>
 
     </div>

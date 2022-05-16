@@ -67,6 +67,18 @@ app.post('/api/add/expense', (req, res) => {
     res.send(`Hello, expense!`);
 })
 
+// GET ALL TRANSACTIONS FROM DB
+
+app.get('/api/get/transactions', (req, res) => {
+    console.log(`GET request received to get transactions`);
+    db.all(`SELECT * FROM transactions`, (err, rows) => {
+        if (err) {
+            throw err;
+        }
+        res.send(rows);
+    })
+})
+
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 })

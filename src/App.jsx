@@ -4,6 +4,8 @@ import './App.css'
 
 import TransactionList from './components/TransactionList';
 
+const REGEXFORDATEVALIDATION = /([0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1]))/;
+
 function App() {
   const [haveLatestData, setHaveLatestData] = useState(false)
 
@@ -139,7 +141,7 @@ function App() {
   // TODO: add some input validation to frontend -- only update state if input is valid
   // TODO: make input box outline in red if the input is invalid, for example if the date format is incorrect
   // TODO: invalid inputs could be animated on attempted submission to show user there is a problem (ie: shake the input box)
-  
+
   const handleIncomeChange = (e) => {
     setNewIncome({
       ...newIncome,

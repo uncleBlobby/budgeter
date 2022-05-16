@@ -25,16 +25,3 @@ const TransactionList = ( {props, getTotalIncome, getTotalExpense} ) => {
 }
 
 export default TransactionList;
-
-/*
-
-{data.transactions.map(transaction => {
-                <div key={transaction.id}>
-                    <p>{transaction.class}</p>
-                    <p>{transaction.type}</p>
-                    <p>{transaction.amount}</p>
-                    <p>{transaction.date}</p>
-                </div>
-            })}
-            
-*/

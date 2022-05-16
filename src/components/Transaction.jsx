@@ -5,7 +5,7 @@ const Transaction = ({props}) => {
     return (
         <div className={TXCLASS}>
                 <span>{props.type}</span>
-                <span>{props.amount}</span>
+                <span>${props.amount}</span>
                 <span>{props.date}</span>
         </div>
     )

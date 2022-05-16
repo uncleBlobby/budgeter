@@ -5,9 +5,6 @@ import './App.css'
 import TransactionList from './components/TransactionList';
 
 function App() {
-  // TODO: update state to handle input chages
-  const [count, setCount] = useState(0)
-
   const [haveLatestData, setHaveLatestData] = useState(false)
 
   const [latestData, setLatestData] = useState([])
@@ -85,22 +82,6 @@ function App() {
     })
   }
 
-  // TODO: GET routing to update all incomes from DB
-  // currently unused.
-  const getIncomesFromDB = () => {
-    console.log(`getting incomes from DB`);
-    axios({
-      method: 'get',
-      url: 'http://localhost:3001/api/get/income'
-    })
-    .then(res => {
-      console.log(`response: ${res.data}`);
-    })
-    .catch(err => {
-      console.log(`error: ${err}`);
-    })
-  }
-
   // sends new expense object from frontend inputs to backend API
   const sendExpenseToDB = () => {
     console.log(`sending expense to DB`);
@@ -112,22 +93,6 @@ function App() {
     .then(res => {
       console.log(`response: ${res.data}`);
       setHaveLatestData(false);
-    })
-    .catch(err => {
-      console.log(`error: ${err}`);
-    })
-  }
-
-  // TODO: GET routing to update all expenses from DB
-  // currently unused.
-  const getExpensesFromDB = () => {
-    console.log(`getting expenses from DB`);
-    axios({
-      method: 'get',
-      url: 'http://localhost:3001/api/get/expense'
-    })
-    .then(res => {
-      console.log(`response: ${res.data}`);
     })
     .catch(err => {
       console.log(`error: ${err}`);

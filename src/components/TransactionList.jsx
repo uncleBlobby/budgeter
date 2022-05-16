@@ -1,6 +1,7 @@
 import Transaction from './Transaction.jsx';
+import './TransactionList.css';
 
-const TransactionList = ( {props} ) => {
+const TransactionList = ( {props, getTotalIncome, getTotalExpense} ) => {
     //console.log(`props in front end: ${JSON.stringify(props)}`);
 
     return (
@@ -10,12 +11,15 @@ const TransactionList = ( {props} ) => {
                 return (
                     <div>
                     <Transaction key={transaction.id} props={transaction}/>
-                    <div key={transaction.id}>
-                        <span>{transaction.class} {transaction.type} {transaction.amount} {transaction.date}</span>
-                    </div>
                     </div>
                 )             
             })}
+        <div id='totalExpenses'>
+            Total Expenses: ${getTotalExpense}
+        </div>
+        <div id='totalIncomes'>
+            Total Incomes: ${getTotalIncome}
+        </div>
         </div>
     )
 }

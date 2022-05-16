@@ -1,10 +1,24 @@
+.transaction {
+    display: flex;
+    justify-content: space-around;
+}
+
 .income {
     display: flex;
     justify-content: space-around;
     background-color: #afffb2;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
 }
 
 .expense {
+    display: flex;
     background-color: #f8817d;
     justify-content: space-around;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
 }

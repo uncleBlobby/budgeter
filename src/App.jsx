@@ -45,6 +45,28 @@ function App() {
     description: ''   // description of transaction (currently not in use)
   })
   */
+
+  // calculate and return total expenses / total incomes for all transactions:
+
+  const getTotalIncome = () => {
+    let total = 0;
+    latestData.forEach(txn => {
+      if (txn.class === 'income') {
+        total += Number(txn.amount);
+      }
+    })
+    return total
+  }
+
+  const getTotalExpense = () => {
+    let total = 0;
+    latestData.forEach(txn => {
+      if (txn.class === 'expense') {
+        total += Number(txn.amount);
+      }
+    })
+    return total
+  }
   
   // sends new income object from frontend inputs to backend API
   const sendIncomeToDB = () => {
@@ -206,7 +228,7 @@ function App() {
       <div>
         Show Data here.
         <button onClick={ () => getDataFromDB()}>GET DB DATA</button>
-        <TransactionList props={latestData} />
+        <TransactionList props={latestData} getTotalIncome={getTotalIncome()} getTotalExpense={getTotalExpense()} />
       </div>
 
     </div>

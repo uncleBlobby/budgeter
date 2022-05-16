@@ -89,16 +89,23 @@ app.listen(port, () => {
 // might be easier to make this adjustment on the frontend ??
 
 const prepareSQLStatement = (txnData, txnType) => {
+    const amount = txnData.amount;
     if (txnType === 'income'){
-        let stmt = `INSERT INTO transactions (class, type, amount, date, created, modified, description) VALUES ('${txnData.class}', '${txnData.type}', '${txnData.amount}', '${txnData.date}', '${txnData.created}', '${txnData.modified}', '${txnData.description}')`;
+        let stmt = `INSERT INTO transactions (class, type, amount, date, created, modified, description) VALUES ('${txnData.class}', '${txnData.type}', '${stripDollarSign(amount)}', '${txnData.date}', '${txnData.created}', '${txnData.modified}', '${txnData.description}')`;
         return stmt;
     }
     if (txnType === 'expense'){
-        let stmt = `INSERT INTO transactions (class, type, amount, date, created, modified, description) VALUES ('${txnData.class}', '${txnData.type}', '${txnData.amount}', '${txnData.date}', '${txnData.created}', '${txnData.modified}', '${txnData.description}')`;
+        let stmt = `INSERT INTO transactions (class, type, amount, date, created, modified, description) VALUES ('${txnData.class}', '${txnData.type}', '${stripDollarSign(amount)}', '${txnData.date}', '${txnData.created}', '${txnData.modified}', '${txnData.description}')`;
         return stmt;
     }
     else {
         console.log(`Error: invalid transaction type`);
+    }
+}
+
+const stripDollarSign = (amount) => {
+    if (amount.includes('$')){
+        return amount.replace('$', '');
     }
 }
 

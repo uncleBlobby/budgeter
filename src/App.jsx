@@ -4,7 +4,8 @@ import './App.css'
 
 import TransactionList from './components/TransactionList';
 
-const REGEXFORDATEVALIDATION = /([0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1]))/;
+const REGEXFORDATEVALIDATION = RegExp('([0-9][0-9]-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1]))');
+const REGEXFORTYPEVALIDATION = RegExp('.');
 
 function App() {
   const [haveLatestData, setHaveLatestData] = useState(false)
@@ -143,6 +144,39 @@ function App() {
   // TODO: invalid inputs could be animated on attempted submission to show user there is a problem (ie: shake the input box)
 
   const handleIncomeChange = (e) => {
+    let containsValidType   = false;
+    let containsValidAmount = false;
+    let containsValidDate   = false;
+
+    const lastInput = e.target.value;
+    if (containsValidType === false) {
+      console.log(`invalid type`);
+    }
+
+    if (containsValidAmount === false) {
+      console.log(`invalid amount`);
+    }
+    if (containsValidDate === false) {
+      console.log(`invalid date`);
+    }
+    console.log(`lastInput: ${lastInput}`);
+
+    if (e.target.name === 'type' && REGEXFORTYPEVALIDATION.exec(lastInput) !== null) {
+        console.log(`txn type appears to be valid`);
+        containsValidType = true;
+    }
+    if (e.target.name === 'date' && REGEXFORDATEVALIDATION.exec(lastInput) === null) {
+      console.log(`date format is incorrect`);
+    } else if (e.target.name === 'amount' && Number(lastInput) === NaN) {
+      console.log(`amount is not valid`);
+    } else {
+      console.log(`inputs appear to be acceptable`)
+    }
+
+    if (containsValidType === true) {
+      console.log(`good job, valid type`);
+    }
+
     setNewIncome({
       ...newIncome,
       [e.target.name]: e.target.value,

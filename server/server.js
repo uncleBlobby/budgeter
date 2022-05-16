@@ -106,7 +106,7 @@ const prepareSQLStatement = (txnData, txnType) => {
 const stripDollarSign = (amount) => {
     if (amount.includes('$')){
         return amount.replace('$', '');
-    }
+    } else return amount;
 }
 
 // DEBUG FUCTION: TEST DB

@@ -119,9 +119,9 @@ function App() {
       url: 'http://localhost:3001/api/get/transactions'
     })
     .then(res => {
-      console.log(`response: ${JSON.stringify(res.data)}`);
+      //console.log(`response: ${JSON.stringify(res.data)}`);
       setLatestData(res.data);
-      console.log(`latestData: ${latestData}`);
+      //console.log(`latestData: ${latestData}`);
     })
     .catch(err => {
       console.log(`error: ${err}`);

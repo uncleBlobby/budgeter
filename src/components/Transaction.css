@@ -1,0 +1,10 @@
+.income {
+    display: flex;
+    justify-content: space-around;
+    background-color: #afffb2;
+}
+
+.expense {
+    background-color: #f8817d;
+    justify-content: space-around;
+}

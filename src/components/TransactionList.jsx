@@ -1,13 +1,18 @@
+import Transaction from './Transaction.jsx';
+
 const TransactionList = ( {props} ) => {
-    console.log(`props in front end: ${JSON.stringify(props)}`);
+    //console.log(`props in front end: ${JSON.stringify(props)}`);
 
     return (
         <div id='transactionListContainer'>
             Hello Transaction List
             {props.map((transaction) => {
                 return (
+                    <div>
+                    <Transaction key={transaction.id} props={transaction}/>
                     <div key={transaction.id}>
                         <span>{transaction.class} {transaction.type} {transaction.amount} {transaction.date}</span>
+                    </div>
                     </div>
                 )             
             })}
